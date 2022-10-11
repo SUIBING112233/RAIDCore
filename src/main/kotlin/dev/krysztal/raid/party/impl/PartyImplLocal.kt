@@ -69,6 +69,8 @@ class PartyImplLocal : IParties {
         val party = this.partiesList.find { it.first == partyUuid }?.second
         party?.removeMember(memberUuid)
         party?.let { this.setParty(partyUuid, it) }
+
+        if (party?.getMembers()?.isEmpty() == true) this.removeParty(partyUuid)
     }
 
     override fun saveParties() {
