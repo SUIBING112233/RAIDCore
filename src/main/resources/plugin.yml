@@ -1,6 +1,6 @@
-name: KotlinPaperTemplate
+name: RAIDCore
 version: '${version}'
-main: dev.krysztal.demo.DemoMain
-api-version: 1.19
-prefix: KotlinPaperTemplate
-description: The develop template of paper spigot using Kotlin language.
+main: dev.krysztal.raid.RAIDMain
+api-version: 1.19.2
+prefix: RAIDCore
+description: An plugin API for RAID plugin develop.

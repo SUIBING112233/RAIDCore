@@ -14,17 +14,17 @@ val compileKotlin: KotlinCompile by tasks
 val compileTestKotlin: KotlinCompile by tasks
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 }
 
 
 dependencies {
-
-
-    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
-
+    compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:minecraft-server:1.19.2-R0.1-SNAPSHOT")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 
     testImplementation(kotlin("test"))
