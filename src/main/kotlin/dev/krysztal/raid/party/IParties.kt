@@ -3,7 +3,7 @@ package dev.krysztal.raid.party
 import java.util.*
 
 interface IParties {
-    fun createParty(): UUID
+    fun createParty(vararg member: Member): UUID
     fun removeParty(uuid: UUID)
     fun clearParty(uuid: UUID)
     fun getParty(uuid: UUID): IParty?
@@ -17,7 +17,7 @@ interface IParties {
 }
 
 interface IParty {
-    fun addMember(member: Member)
+    fun addMember(vararg member: Member)
     fun removeMember(uuid: UUID)
     fun getMembers(): List<Member>
     fun getMember(uuid: UUID): Member?

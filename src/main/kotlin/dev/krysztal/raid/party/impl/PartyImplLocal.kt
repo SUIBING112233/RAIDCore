@@ -12,9 +12,13 @@ import java.util.*
 
 class PartyImplLocal : IParties {
     private var partiesList: MutableList<Pair<UUID, IParty>> = mutableListOf()
-    override fun createParty(): UUID {
+    override fun createParty(vararg member: Member): UUID {
         val uuid = UUID.randomUUID()
-        this.partiesList.add(Pair(uuid, PartyLocal()))
+
+        val party = PartyLocal()
+        party.addMember(*member)
+
+        this.partiesList.add(Pair(uuid, party))
         return uuid
     }
 
@@ -79,9 +83,11 @@ class PartyImplLocal : IParties {
 private class PartyLocal : IParty {
     var memberList = mutableListOf<Member>()
 
-    override fun addMember(member: Member) {
-        this.removeMember(member.uuid)
-        this.memberList.add(member)
+    override fun addMember(vararg member: Member) {
+        member.forEach {
+            this.removeMember(it.uuid)
+            this.memberList.add(it)
+        }
     }
 
     override fun removeMember(uuid: UUID) {
