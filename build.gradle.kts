@@ -25,7 +25,8 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc:minecraft-server:1.19.2-R0.1-SNAPSHOT")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
 
     testImplementation(kotlin("test"))
     implementation(kotlin("stdlib"))
