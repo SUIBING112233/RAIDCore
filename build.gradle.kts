@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.7.10"
     java
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    `maven-publish`
 }
 
 group = "dev.krysztal"
@@ -60,4 +61,12 @@ compileKotlin.kotlinOptions {
 
 compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
 }
