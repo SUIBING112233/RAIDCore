@@ -1,13 +1,16 @@
-# KotlinPaperTemplate
+<div align="center">
+    <h1>RAID Core</h1>
+    <img src="assets/imgs/banner.svg" alt="Banner">
+   <a href="https://jitpack.io/#dev.krysztal/RAIDCore"><img src="https://jitpack.io/v/dev.krysztal/RAIDCore.svg" alt="Banner"></a>
+</div>
 
-The plugin develop template of paper spigot using Kotlin language.
+A plugin API for making RAID/MMORPG plugin.
 
-## How to build?
+Note: Only support Kotlin.
 
-Just run this command
+## What's provided?
 
-```shell
-gradlew shadow
-```
-
-After succeed, the result will in `build/libs`.
+- [x] Party
+- [x] Enemy
+- [ ] Task
+- [ ] RAID
