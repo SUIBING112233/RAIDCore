@@ -27,3 +27,6 @@ fun Player.toMember(memberPermission: MemberPermission): Member {
     return Member(this.uniqueId, memberPermission)
 }
 
+fun Player.isMemberOf(uuid: UUID): Boolean {
+    return RAID.party.getParty(uuid)?.getMember(this.uniqueId) == null
+}
