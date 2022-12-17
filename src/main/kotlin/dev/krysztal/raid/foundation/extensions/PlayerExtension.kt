@@ -1,8 +1,8 @@
-package dev.krysztal.raid.utils
+package dev.krysztal.raid.foundation.extensions
 
 import dev.krysztal.raid.RAID
-import dev.krysztal.raid.party.Member
-import dev.krysztal.raid.party.MemberPermission
+import dev.krysztal.raid.foundation.Member
+import dev.krysztal.raid.foundation.MemberPermission
 import org.bukkit.entity.Player
 import java.util.*
 

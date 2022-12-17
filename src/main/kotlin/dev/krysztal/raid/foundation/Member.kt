@@ -1,4 +1,4 @@
-package dev.krysztal.raid.party
+package dev.krysztal.raid.foundation
 
 import org.bukkit.entity.Player
 import java.util.*

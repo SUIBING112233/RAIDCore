@@ -1,7 +1,8 @@
 package dev.krysztal.raid.party.impl
 
-import dev.krysztal.raid.party.Member
-import dev.krysztal.raid.party.MemberPermission
+import dev.krysztal.raid.foundation.Member
+import dev.krysztal.raid.foundation.MemberPermission
+import dev.krysztal.raid.party.PartyImplLocal
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.util.*

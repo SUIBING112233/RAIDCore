@@ -1,11 +1,12 @@
-package dev.krysztal.raid.utils
+package dev.krysztal.raid.foundation.utils
 
 import dev.krysztal.raid.RAIDMain
-import dev.krysztal.raid.party.PartiesImplTypes
+import dev.krysztal.raid.foundation.extensions.getConfig
+import dev.krysztal.raid.party.PartiesImpls
 import java.io.File
 
 object ConfigUtils {
-    lateinit var PARTY_IMPL_TYPE: PartiesImplTypes
+    var PARTY_IMPL_TYPE: PartiesImpls
 
     init {
         val configFile = File(RAIDMain.dataFolder.path, "config.yml")
@@ -15,10 +16,8 @@ object ConfigUtils {
         }
         RAIDMain.config.load(configFile);
 
-        this.PARTY_IMPL_TYPE = when (RAIDMain.config.get("party.impl")) {
-            else -> PartiesImplTypes.Local
+        PARTY_IMPL_TYPE = when (PartiesImpls.valueOf("party.impl".getConfig().toString())) {
+            else -> PartiesImpls.Local
         }
-
-
     }
 }

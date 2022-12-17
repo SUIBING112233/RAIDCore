@@ -1,6 +1,7 @@
-package dev.krysztal.raid.utils
+package dev.krysztal.raid.foundation.extensions
 
 import dev.krysztal.raid.RAIDMain
+import dev.krysztal.raid.foundation.utils.Constants
 import org.bukkit.entity.LivingEntity
 import org.bukkit.metadata.FixedMetadataValue
 

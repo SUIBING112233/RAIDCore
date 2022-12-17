@@ -1,9 +1,7 @@
 package dev.krysztal.raid
 
-import dev.krysztal.raid.party.IParties
+import dev.krysztal.raid.foundation.PartyManager
 
-class RAID {
-    companion object {
-        lateinit var party: IParties
-    }
+object RAID {
+    lateinit var party: PartyManager
 }

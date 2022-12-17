@@ -1,4 +1,4 @@
-package dev.krysztal.raid.utils
+package dev.krysztal.raid.foundation.extensions
 
 import dev.krysztal.raid.RAIDMain
 

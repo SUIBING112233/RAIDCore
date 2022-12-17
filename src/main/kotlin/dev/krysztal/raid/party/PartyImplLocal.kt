@@ -1,17 +1,17 @@
-package dev.krysztal.raid.party.impl
+package dev.krysztal.raid.party
 
 import com.google.gson.Gson
 import dev.krysztal.raid.RAIDMain
-import dev.krysztal.raid.party.IParties
-import dev.krysztal.raid.party.IParty
-import dev.krysztal.raid.party.Member
-import dev.krysztal.raid.party.MemberPermission
+import dev.krysztal.raid.foundation.PartyManager
+import dev.krysztal.raid.foundation.Party
+import dev.krysztal.raid.foundation.Member
+import dev.krysztal.raid.foundation.MemberPermission
 import java.io.File
 import java.util.*
 
 
-class PartyImplLocal : IParties {
-    private var partiesList: MutableList<Pair<UUID, IParty>> = mutableListOf()
+class PartyImplLocal : PartyManager {
+    private var partiesList: MutableList<Pair<UUID, Party>> = mutableListOf()
     override fun createParty(vararg member: Member): UUID {
         val uuid = UUID.randomUUID()
 
@@ -41,20 +41,20 @@ class PartyImplLocal : IParties {
         this.setParty(uuid, partyLocal)
     }
 
-    override fun getParty(uuid: UUID): IParty? {
+    override fun getParty(uuid: UUID): Party? {
         return this.partiesList.find { it.first == uuid }?.second
     }
 
-    override fun setParty(uuid: UUID, iParty: IParty) {
+    override fun setParty(uuid: UUID, party: Party) {
         this.removeParty(uuid)
-        this.partiesList.add(Pair(uuid, iParty))
+        this.partiesList.add(Pair(uuid, party))
     }
 
-    override fun getParties(): List<Pair<UUID, IParty>> {
+    override fun getParties(): List<Pair<UUID, Party>> {
         return this.partiesList
     }
 
-    override fun setParties(list: List<Pair<UUID, IParty>>) {
+    override fun setParties(list: List<Pair<UUID, Party>>) {
         this.partiesList = list.toMutableList()
     }
 
@@ -82,7 +82,7 @@ class PartyImplLocal : IParties {
 }
 
 
-private class PartyLocal : IParty {
+class PartyLocal : Party {
     var memberList = mutableListOf<Member>()
 
     override fun addMember(vararg member: Member) {
