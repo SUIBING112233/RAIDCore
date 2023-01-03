@@ -3,18 +3,23 @@ package dev.krysztal.raid.foundation
 import org.bukkit.entity.Player
 import java.util.*
 
-data class Member(
-    val uuid: UUID, var memberPermission: MemberPermission = MemberPermission.Member
+data class PartyMember(
+    val uuid: UUID, var partyMemberPermission: PartyMemberPermission = PartyMemberPermission.Member
 ) {
     companion object {
-        fun fromPlayer(player: Player, memberPermission: MemberPermission): Member {
-            return Member(player.uniqueId, memberPermission)
+        fun fromPlayer(player: Player, partyMemberPermission: PartyMemberPermission): PartyMember {
+            return PartyMember(player.uniqueId, partyMemberPermission)
         }
 
-        fun fromPlayer(player: Player): Member {
-            return Member(player.uniqueId)
+        fun fromPlayer(player: Player): PartyMember {
+            return PartyMember(player.uniqueId)
         }
     }
 }
 
-enum class MemberPermission { Member, Captain }
+enum class PartyMemberPermission { Member, Captain }
+
+data class TroopMember(
+    val uuid: UUID,
+    var troopMemberPermission: Int
+)

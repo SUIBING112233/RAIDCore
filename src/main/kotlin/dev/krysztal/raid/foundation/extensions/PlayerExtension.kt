@@ -1,32 +1,36 @@
 package dev.krysztal.raid.foundation.extensions
 
 import dev.krysztal.raid.RAID
-import dev.krysztal.raid.foundation.Member
-import dev.krysztal.raid.foundation.MemberPermission
+import dev.krysztal.raid.foundation.PartyMember
+import dev.krysztal.raid.foundation.PartyMemberPermission
 import org.bukkit.entity.Player
 import java.util.*
 
 
 fun Player.addToParty(uuid: UUID) {
-    RAID.party.addMember(uuid, this.toMember())
+    RAID.party.addMember(uuid, this.toPartyMember())
 }
 
-fun Player.addToParty(uuid: UUID, memberPermission: MemberPermission) {
-    RAID.party.addMember(uuid, this.toMember(memberPermission))
+fun Player.addToParty(uuid: UUID, partyMemberPermission: PartyMemberPermission) {
+    RAID.party.addMember(uuid, this.toPartyMember(partyMemberPermission))
 }
 
 fun Player.removeFromParty(uuid: UUID) {
     RAID.party.removeMember(uuid, this.uniqueId)
 }
 
-fun Player.toMember(): Member {
-    return Member(this.uniqueId)
+fun Player.toPartyMember(): PartyMember {
+    return PartyMember(this.uniqueId)
 }
 
-fun Player.toMember(memberPermission: MemberPermission): Member {
-    return Member(this.uniqueId, memberPermission)
+fun Player.toPartyMember(partyMemberPermission: PartyMemberPermission): PartyMember {
+    return PartyMember(this.uniqueId, partyMemberPermission)
 }
 
-fun Player.isMemberOf(uuid: UUID): Boolean {
-    return RAID.party.getParty(uuid)?.getMember(this.uniqueId) == null
+fun Player.isPartyMemberOf(partyUUID: UUID): Boolean {
+    return RAID.party.getParty(partyUUID)?.getMember(this.uniqueId) == null
+}
+
+fun Player.isTroopMemberOf(partyUUID: UUID): Boolean {
+    return RAID.party.getParty(partyUUID)?.getMember(this.uniqueId) == null
 }

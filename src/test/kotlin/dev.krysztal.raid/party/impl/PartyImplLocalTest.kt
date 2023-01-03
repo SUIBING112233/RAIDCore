@@ -1,7 +1,7 @@
 package dev.krysztal.raid.party.impl
 
-import dev.krysztal.raid.foundation.Member
-import dev.krysztal.raid.foundation.MemberPermission
+import dev.krysztal.raid.foundation.PartyMember
+import dev.krysztal.raid.foundation.PartyMemberPermission
 import dev.krysztal.raid.party.PartyImplLocal
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -33,13 +33,13 @@ internal class PartyImplLocalTest {
     @Test
     fun clearParty() {
         val uuid = this.partyImplLocal.createParty()
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
 
         val captainUUID = UUID.randomUUID()
-        this.partyImplLocal.addMember(uuid, Member(captainUUID, MemberPermission.Captain))
+        this.partyImplLocal.addMember(uuid, PartyMember(captainUUID, PartyMemberPermission.Captain))
         this.partyImplLocal.clearParty(uuid)
 
         assertEquals(1, this.partyImplLocal.getParty(uuid)?.getMembers()?.size)
@@ -49,13 +49,13 @@ internal class PartyImplLocalTest {
     @Test
     fun getParty() {
         val uuid = this.partyImplLocal.createParty()
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
 
         val captainUUID = UUID.randomUUID()
-        this.partyImplLocal.addMember(uuid, Member(captainUUID, MemberPermission.Captain))
+        this.partyImplLocal.addMember(uuid, PartyMember(captainUUID, PartyMemberPermission.Captain))
 
         val party = this.partyImplLocal.getParty(uuid)
 
@@ -65,13 +65,13 @@ internal class PartyImplLocalTest {
     @Test
     fun setParty() {
         val uuid = this.partyImplLocal.createParty()
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
 
         val captainUUID = UUID.randomUUID()
-        this.partyImplLocal.addMember(uuid, Member(captainUUID, MemberPermission.Captain))
+        this.partyImplLocal.addMember(uuid, PartyMember(captainUUID, PartyMemberPermission.Captain))
 
         assertEquals(5, this.partyImplLocal.getParty(uuid)?.getMembers()?.size)
 
@@ -105,13 +105,13 @@ internal class PartyImplLocalTest {
     @Test
     fun addMember() {
         val uuid = this.partyImplLocal.createParty()
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
-        this.partyImplLocal.addMember(uuid, Member(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
+        this.partyImplLocal.addMember(uuid, PartyMember(UUID.randomUUID()))
 
         val captainUUID = UUID.randomUUID()
-        this.partyImplLocal.addMember(uuid, Member(captainUUID, MemberPermission.Captain))
+        this.partyImplLocal.addMember(uuid, PartyMember(captainUUID, PartyMemberPermission.Captain))
 
         assertEquals(5, this.partyImplLocal.getParty(uuid)?.getMembers()?.size)
     }
@@ -121,7 +121,7 @@ internal class PartyImplLocalTest {
         val uuid = this.partyImplLocal.createParty()
 
         val captainUUID = UUID.randomUUID()
-        this.partyImplLocal.addMember(uuid, Member(captainUUID, MemberPermission.Captain))
+        this.partyImplLocal.addMember(uuid, PartyMember(captainUUID, PartyMemberPermission.Captain))
 
         this.partyImplLocal.removeMember(uuid, captainUUID)
 

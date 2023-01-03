@@ -4,19 +4,19 @@ import com.google.gson.Gson
 import dev.krysztal.raid.RAIDMain
 import dev.krysztal.raid.foundation.PartyManager
 import dev.krysztal.raid.foundation.Party
-import dev.krysztal.raid.foundation.Member
-import dev.krysztal.raid.foundation.MemberPermission
+import dev.krysztal.raid.foundation.PartyMember
+import dev.krysztal.raid.foundation.PartyMemberPermission
 import java.io.File
 import java.util.*
 
 
 class PartyImplLocal : PartyManager {
     private var partiesList: MutableList<Pair<UUID, Party>> = mutableListOf()
-    override fun createParty(vararg member: Member): UUID {
+    override fun createParty(vararg partyMember: PartyMember): UUID {
         val uuid = UUID.randomUUID()
 
         val party = PartyLocal()
-        party.addMember(*member)
+        party.addMember(*partyMember)
 
         this.partiesList.add(Pair(uuid, party))
         return uuid
@@ -33,9 +33,9 @@ class PartyImplLocal : PartyManager {
     }
 
     override fun clearParty(uuid: UUID) {
-        val members = this.getParty(uuid)?.getMembers()?.filter { it.memberPermission == MemberPermission.Captain }
+        val members = this.getParty(uuid)?.getMembers()?.filter { it.partyMemberPermission == PartyMemberPermission.Captain }
         val partyLocal = PartyLocal()
-        partyLocal.memberList = members?.toMutableList()!!
+        partyLocal.partyMemberList = members?.toMutableList()!!
 
         this.removeParty(uuid)
         this.setParty(uuid, partyLocal)
@@ -58,10 +58,10 @@ class PartyImplLocal : PartyManager {
         this.partiesList = list.toMutableList()
     }
 
-    override fun addMember(uuid: UUID, member: Member) {
+    override fun addMember(uuid: UUID, partyMember: PartyMember) {
         val party = this.partiesList.find { it.first == uuid }?.second
 
-        party?.addMember(member)
+        party?.addMember(partyMember)
         party?.let { this.setParty(uuid, it) }
     }
 
@@ -83,24 +83,24 @@ class PartyImplLocal : PartyManager {
 
 
 class PartyLocal : Party {
-    var memberList = mutableListOf<Member>()
+    var partyMemberList = mutableListOf<PartyMember>()
 
-    override fun addMember(vararg member: Member) {
-        member.forEach {
+    override fun addMember(vararg partyMember: PartyMember) {
+        partyMember.forEach {
             this.removeMember(it.uuid)
-            this.memberList.add(it)
+            this.partyMemberList.add(it)
         }
     }
 
     override fun removeMember(uuid: UUID) {
-        this.memberList.removeIf { it.uuid == uuid }
+        this.partyMemberList.removeIf { it.uuid == uuid }
     }
 
-    override fun getMembers(): List<Member> {
-        return this.memberList
+    override fun getMembers(): List<PartyMember> {
+        return this.partyMemberList
     }
 
-    override fun getMember(uuid: UUID): Member? {
-        return this.memberList.find { it.uuid == uuid }
+    override fun getMember(uuid: UUID): PartyMember? {
+        return this.partyMemberList.find { it.uuid == uuid }
     }
 }
